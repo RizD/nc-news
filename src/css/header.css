@@ -1,0 +1,15 @@
+nav {
+	padding: 0;
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.07) 0px 4px 12px 0px;
+}
+
+.navbar-brand {
+	margin: 0;
+	padding-left: 5%;
+	color: #535353;
+}
+
+.nav-link {
+	color: #535353;
+}

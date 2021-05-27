@@ -1,0 +1,33 @@
+.articles {
+	background-color: white;
+	width: 100%;
+	box-shadow: rgba(0, 0, 0, 0.07) 0px 4px 12px 0px;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	border: 1px solid #f4f6f8a8;
+}
+
+.seperator {
+	border-left: 1px solid rgb(235, 237, 240);
+	border-bottom: 1px solid rgb(235, 237, 240);
+}
+
+.col-1 {
+	max-width: 2vw;
+	padding: 0;
+	margin: 0;
+}
+
+.title {
+	padding-top: 1%;
+	font-size: 1.2em;
+}
+
+.info {
+	margin-top: 4%;
+	font-size: 0.9em;
+}
+
+p {
+	margin: 0;
+}
