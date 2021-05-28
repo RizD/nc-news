@@ -6,12 +6,13 @@ import Comments from './componants/Comments';
 import Header from './componants/Header';
 import NewComment from './componants/NewComment';
 import Topic from './componants/Topic';
-
+import Toolbar from './componants/Toolbar';
 function App() {
 	return (
 		<div className="container-fluid">
 			<Router>
 				<Header />
+				<Toolbar />
 				<Switch>
 					<Route exact path="/">
 						<Articles />

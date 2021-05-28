@@ -3,6 +3,7 @@ import '../css/articles.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getArticles } from '../utils/api.js';
+import Votes from './Votes';
 
 const Articles = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -14,24 +15,23 @@ const Articles = () => {
 			setIsLoading(false);
 		});
 	}, []);
-	if (isLoading) {
-		return <p>Loading...</p>;
-	}
 
+	if (isLoading) {
+		return (
+			<div className="spinner-border" role="status">
+				<span className="sr-only">Loading...</span>
+			</div>
+		);
+	}
 	return (
 		<div className="container articles">
 			{articles.map((article) => {
 				return (
 					<div id="article" className="row" key={article.article_id}>
-						<div className="col-1 seperator text-center">
-							<button className="btn">
-								<i className="fas fa-angle-up"></i>
-							</button>
-							{article.votes}
-							<button className="btn">
-								<i className="fas fa-angle-down"></i>
-							</button>
-						</div>
+						<Votes
+							currentVotes={article.votes}
+							articleId={article.article_id}
+						/>
 						<div className="col seperator">
 							<div className="title">
 								<Link to={`/articles/${article.article_id}`} className="link">

@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/topic.css';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getArticles } from '../utils/api.js';
+import Votes from './Votes';
 
 const Topic = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -16,22 +16,21 @@ const Topic = () => {
 		});
 	}, [params]);
 	if (isLoading) {
-		return <p>Loading...</p>;
+		return (
+			<div className="spinner-border" role="status">
+				<span className="sr-only">Loading...</span>
+			</div>
+		);
 	}
 	return (
 		<div className="container articles">
 			{articles.map((article) => {
 				return (
 					<div id="article" className="row" key={article.article_id}>
-						<div className="col-1 seperator text-center">
-							<button className="btn">
-								<i className="fas fa-angle-up"></i>
-							</button>
-							{article.votes}
-							<button className="btn">
-								<i className="fas fa-angle-down"></i>
-							</button>
-						</div>
+						<Votes
+							currentVotes={article.votes}
+							articleId={article.article_id}
+						/>
 						<div className="col seperator">
 							<div className="title">
 								<Link to={`/articles/${article.article_id}`} className="link">

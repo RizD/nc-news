@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/article.css';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getArticlesById } from '../utils/api.js';
+import Votes from './Votes';
 
 const Article = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -14,23 +14,19 @@ const Article = () => {
 			setArticles(articleFromApi.article[0]);
 			setIsLoading(false);
 		});
-	}, []);
+	}, [article_id]);
 	if (isLoading) {
-		return <p>Loading...</p>;
+		return (
+			<div className="spinner-border" role="status">
+				<span className="sr-only">Loading...</span>
+			</div>
+		);
 	}
 	return (
 		<div className="container article">
 			<div className="row">
-				<div className="col-1 text-center">
-					<button className="btn">
-						<i className="fas fa-angle-up"></i>
-					</button>
-					{articles.votes}
-					<button className="btn">
-						<i className="fas fa-angle-down"></i>
-					</button>
-				</div>
-				<div className="col">
+				<Votes currentVotes={articles.votes} articleId={articles.article_id} />
+				<div className="col border-left">
 					<h1>{articles.title}</h1>
 				</div>
 			</div>
@@ -41,7 +37,17 @@ const Article = () => {
 			</div>
 			<div className="row article-info">
 				<div className="col">
-					<p>Info</p>
+					<p>
+						<Link to={`/articles/${articles.article_id}`} className="link">
+							{`${articles.comment_count} comments `}
+						</Link>
+						<Link to={`/topics/${articles.topic}`} className="link">
+							{`/topics/${articles.topic}`}
+						</Link>
+						{`
+						created by ${articles.author}
+						on ${new Date(articles.created_at).toDateString()}`}
+					</p>
 				</div>
 			</div>
 		</div>

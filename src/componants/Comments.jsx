@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/comments.css';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getCommentsByArticleId } from '../utils/api.js';
+import VotesComments from './VotesComments';
 
 const Comments = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -11,30 +11,32 @@ const Comments = () => {
 
 	useEffect(() => {
 		getCommentsByArticleId(article_id).then((commentsFromApi) => {
-			console.log(commentsFromApi);
 			setComments(commentsFromApi);
 			setIsLoading(false);
 		});
-	}, []);
+	}, [article_id]);
 	if (isLoading) {
-		return <p>Loading...</p>;
+		return <p>.</p>;
 	}
 	return (
 		<div className="container article">
 			{comments.map((comment) => {
 				return (
-					<div>
-						<div className="row seperator">
-							<div className="col-1 text-center">
-								<button className="btn">
-									<i className="fas fa-angle-up"></i>
-								</button>
-								100
-								<button className="btn">
-									<i className="fas fa-angle-down"></i>
-								</button>
+					<div className="comment-section" key={comment.comment_id}>
+						<div className="row">
+							<VotesComments
+								currentVotes={comment.votes}
+								commentId={comment.comment_id}
+							/>
+							<div className="col comment-body">{comment.body}</div>
+						</div>
+						<div className="row">
+							<div className="col-1 empty-col"></div>
+							<div className="col comment-col-1 comment-info">
+								{`Created by ${comment.author} on ${new Date(
+									comment.created_at
+								).toDateString()}`}
 							</div>
-							<div className="col">{comment.body}</div>
 						</div>
 					</div>
 				);
@@ -44,23 +46,3 @@ const Comments = () => {
 };
 
 export default Comments;
-{
-	/* 
-<div className="row">
-<div className="col-1 text-center">
-	<button className="btn">
-		<i className="fas fa-angle-up"></i>
-	</button>
-	100
-	<button className="btn">
-		<i className="fas fa-angle-down"></i>
-	</button>
-</div>
-<div className="col">Comment Body</div>
-</div>
-<div className="row">
-<div className="col-1"></div>
-<div className="col">Author Info</div>
-</div>
- */
-}

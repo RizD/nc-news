@@ -19,6 +19,9 @@ body {
 	padding-left: 5%;
 }
 
+.border-left {
+	border-left: 1px solid rgb(235, 237, 240);
+}
 .article {
 	background-color: white;
 	width: 100%;
@@ -31,8 +34,47 @@ body {
 .article-body {
 	padding-top: 1%;
 	padding-bottom: 2%;
-	border-bottom: 1px solid rgb(235, 237, 240);
+	font-size: 1.1em;
 }
 
 .article-info {
+	border-top: 1px solid rgb(235, 237, 240);
+	padding: 0.5% 0 0.5% 0;
+	margin-top: 2%;
+	font-size: 0.8em;
+}
+
+.empty-col {
+	border-left: 1px solid rgb(235, 237, 240);
+}
+.comment-section {
+	border-top: 1px solid rgb(235, 237, 240);
+}
+.comment-col-1 {
+	border-top: 1px solid rgb(235, 237, 240);
+	border-right: 1px solid rgb(235, 237, 240);
+	border-left: 1px solid rgb(235, 237, 240);
+}
+
+.comment-body {
+	padding: 1%;
+	font-size: 1.1em;
+}
+.comment-info {
+	font-style: italic;
+	padding: 0.5% 0 0.5% 1%;
+	font-size: 0.8em;
+}
+
+.toolbar {
+	background-color: white;
+	width: 100%;
+	box-shadow: rgba(68, 64, 64, 0.07) 0px 4px 12px 0px;
+	margin-top: 2%;
+	border: 1px solid #f4f6f8a8;
+}
+
+.create-button {
+	margin: 0;
+	padding: 0;
 }

@@ -34,11 +34,3 @@ const Header = () => {
 };
 
 export default Header;
-
-{
-	/* <li className="nav-item">
-<Link to="" className="nav-link">
-	Link
-</Link>
-</li> */
-}
